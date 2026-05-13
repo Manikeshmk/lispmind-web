@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="LispMind Web — A Rule-Based AI Assistant powered by ClojureScript"
+    />
+    <meta name="theme-color" content="#1a1a2e" />
+    <title>LispMind Web — AI Assistant</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Main Chatbot Container -->
+    <div id="app" class="app-container">
+      <!-- Header -->
+      <div class="chatbot-header">
+        <div class="header-content">
+          <h1 class="title">
+            <span class="title-icon">🧠</span>
+            LispMind
+          </h1>
+          <p class="subtitle">Symbolic AI Assistant powered by ClojureScript</p>
+        </div>
+      </div>
+
+      <!-- Chat Messages Area -->
+      <div class="chat-area">
+        <div id="messages" class="messages-container">
+          <!-- Messages will be inserted here by ClojureScript -->
+          <div class="message ai-message">
+            <div class="message-bubble">
+              Hello! I'm LispMind, your rule-based AI assistant.
+              <br /><br />
+              Try saying:
+              <br />• "hello" <br />• "my name is [your name]" <br />• "what is
+              my name" <br />• "I am sad" <br />• "I have fever and cough"
+              <br />• "what is lisp" <br />• "what is AI"
+            </div>
+            <span class="message-timestamp">System</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Input Area -->
+      <div class="input-area">
+        <div class="input-container">
+          <input
+            type="text"
+            id="user-input"
+            class="chat-input"
+            placeholder="Type your message..."
+            autocomplete="off"
+            aria-label="Chat input"
+          />
+          <button
+            id="send-btn"
+            class="send-button"
+            aria-label="Send message"
+            title="Send (Enter or click)"
+          >
+            <span class="send-icon">➤</span>
+          </button>
+        </div>
+        <div class="input-hint">
+          Press <kbd>Enter</kbd> to send • Built with ClojureScript + Symbolic
+          AI
+        </div>
+      </div>
+    </div>
+
+    <!-- ClojureScript compiled code -->
+    <script src="js/main.js"></script>
+  </body>
+</html>
