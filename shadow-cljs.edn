@@ -7,7 +7,7 @@
  {:app
   {:target :browser
    :output-dir "docs/js"
-   :asset-path "/js"
+   :asset-path "/lispmind-web/js"
    :modules {:main {:entries [core]}}
    :compiler-options {:optimizations :simple}
    :devtools {:after-load core/init
