@@ -493,14 +493,14 @@
         timestamp (dom/createElement "span")]
     
     ;; Set message class based on sender
-    (dom/classes message-div (str "message " (if (= sender :user) "user-message" "ai-message")))
+    (set! (.-className message-div) (str "message " (if (= sender :user) "user-message" "ai-message")))
     
     ;; Create message bubble
-    (dom/classes bubble "message-bubble")
+    (set! (.-className bubble) "message-bubble")
     (dom/setTextContent bubble text)
     
     ;; Create timestamp
-    (dom/classes timestamp "message-timestamp")
+    (set! (.-className timestamp) "message-timestamp")
     (dom/setTextContent timestamp (current-timestamp))
     
     ;; Append elements
