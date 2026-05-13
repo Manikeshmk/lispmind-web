@@ -305,26 +305,6 @@
       "Let's talk about this new topic.")))
 
 ;; ============================================
-;; VALIDATION & ERROR HANDLING
-;; ============================================
-;; Ensure input validity
-
-(defn validate-input
-  "Validate user input"
-  [text]
-  {:valid? (and (string? text) (> (count (str/trim text)) 0))
-   :length (count text)
-   :word-count (count (str/split text #"\s+"))})
-
-(defn safe-respond
-  "Safely handle user input with validation"
-  [input]
-  (let [validation (validate-input input)]
-    (if (:valid? validation)
-      (respond input)
-      "Please enter valid text.")))
-
-;; ============================================
 ;; RESPONSE RANKING & SCORING
 ;; ============================================
 ;; Score responses for quality
@@ -349,7 +329,8 @@
 (defn expand-knowledge
   "Dynamically expand the knowledge base"
   [topic description]
-  (swap! (fn [kb] (assoc kb (keyword topic) description))))
+  (let [kb-atom (atom knowledge-base)]
+    (swap! kb-atom assoc (keyword topic) description)))
 
 (defn search-knowledge
   "Search knowledge base for relevant information"
