@@ -9,6 +9,19 @@
   --bd: #2a2a3e;
   --sh: 0 8px 32px rgba(0, 212, 255, 0.1);
   --tr: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --background-dark: #0f0f1e;
+  --background-card: #1a1a2e;
+  --background-light: #16213e;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0c0;
+  --border-color: #2a2a3e;
+  --primary-color: #00d4ff;
+  --secondary-color: #6366f1;
+  --ai-bubble: #16213e;
+  --ai-text: #ffffff;
+  --user-text: #ffffff;
+  --shadow: 0 8px 32px rgba(0, 212, 255, 0.1);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ============================================
