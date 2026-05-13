@@ -16,7 +16,6 @@ LispMind Web is an intelligent chatbot assistant that runs entirely in your brow
 ## ✨ Key Features
 
 ### 1. **Greeting Detection**
-
 The AI recognizes greetings like "hello", "hi", "hey" and responds warmly.
 
 ```
@@ -25,7 +24,6 @@ AI: Hello! Nice to meet you.
 ```
 
 ### 2. **Memory System**
-
 Store and retrieve user information using ClojureScript atoms.
 
 ```
@@ -37,7 +35,6 @@ AI: Your name is Arun.
 ```
 
 ### 3. **Emotion Detection**
-
 Identifies emotions and responds with empathy.
 
 ```
@@ -46,7 +43,6 @@ AI: I'm sorry to hear that. I hope things improve soon. Remember that better day
 ```
 
 ### 4. **Inference Engine**
-
 Applies symbolic reasoning rules to diagnose based on symptoms.
 
 ```
@@ -55,7 +51,6 @@ AI: You may have flu symptoms. Rest and stay hydrated.
 ```
 
 ### 5. **Knowledge Questions**
-
 Answer domain-specific questions about Lisp and AI.
 
 ```
@@ -67,7 +62,6 @@ AI: Artificial Intelligence is the simulation of human intelligence by machines.
 ```
 
 ### 6. **Smart Fallback**
-
 Graceful handling of unknown inputs.
 
 ```
@@ -77,12 +71,12 @@ AI: I do not understand. Could you rephrase that? Try saying 'help' for suggesti
 
 ## 🛠 Technologies
 
-| Layer          | Technology    | Purpose                         |
-| -------------- | ------------- | ------------------------------- |
-| **AI Logic**   | ClojureScript | Symbolic reasoning, rule engine |
-| **Frontend**   | HTML5, CSS3   | Modern responsive UI            |
-| **Build Tool** | shadow-cljs   | ClojureScript compilation       |
-| **Deployment** | GitHub Pages  | Free hosting                    |
+| Layer | Technology | Purpose |
+|-------|-----------|---------|
+| **AI Logic** | ClojureScript | Symbolic reasoning, rule engine |
+| **Frontend** | HTML5, CSS3 | Modern responsive UI |
+| **Build Tool** | shadow-cljs | ClojureScript compilation |
+| **Deployment** | GitHub Pages | Free hosting |
 
 ## 📋 Project Structure
 
@@ -111,7 +105,6 @@ lispmind-web/
 ### Installation
 
 1. **Clone the repository**
-
    ```bash
    git clone https://github.com/Manikeshmk/lispmind-web.git
    cd lispmind-web
@@ -125,7 +118,6 @@ lispmind-web/
 ### Development
 
 1. **Start watch mode** (live reload enabled)
-
    ```bash
    npm run watch
    ```
@@ -140,7 +132,6 @@ The build will watch for changes and recompile automatically.
 ### Production Build
 
 1. **Compile for production**
-
    ```bash
    npm run build
    ```
@@ -198,20 +189,20 @@ User: what is my name
 AI: Your name is Arun.
 
 User: I am sad
-AI: I'm sorry to hear that. I hope things improve soon.
+AI: I'm sorry to hear that. I hope things improve soon. 
     Remember that better days are ahead.
 
 User: I have fever and cough
 AI: You may have flu symptoms. Rest and stay hydrated.
 
 User: what is lisp
-AI: Lisp is a symbolic programming language used in AI systems.
-    Created by John McCarthy in 1958, it emphasizes code-as-data
+AI: Lisp is a symbolic programming language used in AI systems. 
+    Created by John McCarthy in 1958, it emphasizes code-as-data 
     and homoiconicity.
 
 User: what is AI
-AI: Artificial Intelligence is the simulation of human intelligence
-    by machines. It includes machine learning, reasoning, perception,
+AI: Artificial Intelligence is the simulation of human intelligence 
+    by machines. It includes machine learning, reasoning, perception, 
     and natural language understanding.
 
 User: bye
@@ -286,11 +277,11 @@ The interface uses CSS custom properties (variables) for easy theming:
 
 ```css
 :root {
-  --primary-color: #00d4ff; /* Cyan accent */
-  --secondary-color: #6366f1; /* Indigo accent */
-  --background-dark: #0f0f1e; /* Very dark blue */
-  --text-primary: #ffffff; /* White text */
-  /* ... more colors ... */
+    --primary-color: #00d4ff;          /* Cyan accent */
+    --secondary-color: #6366f1;        /* Indigo accent */
+    --background-dark: #0f0f1e;        /* Very dark blue */
+    --text-primary: #ffffff;           /* White text */
+    /* ... more colors ... */
 }
 ```
 
@@ -315,14 +306,12 @@ The chatbot logs initialization messages. Open your browser's developer tools (F
 ## 🚀 Advanced Features (Optional)
 
 ### localStorage Persistence
-
 ```clojure
 (defn persist-memory []
   (js/localStorage.setItem "user-memory" (pr-str @memory)))
 ```
 
 ### Typing Animation
-
 ```css
 .message-bubble {
   animation: typing 1s steps(1, end);
@@ -330,29 +319,24 @@ The chatbot logs initialization messages. Open your browser's developer tools (F
 ```
 
 ### Voice Input
-
 ```javascript
-const recognition = new (
-  window.SpeechRecognition || window.webkitSpeechRecognition
-)();
+const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
 ```
 
 ### Markdown Support
-
 Use markdown in responses for formatted text.
 
 ### Learning New Responses
-
 Extend `respond` to learn from user feedback.
 
 ## 🐛 Troubleshooting
 
-| Issue                     | Solution                                         |
-| ------------------------- | ------------------------------------------------ |
-| `npm install` fails       | Update Node.js to v16+                           |
-| `shadow-cljs` not found   | Run `npm install` again                          |
-| No JavaScript generated   | Run `npm run build` instead of watch             |
-| Page shows blank          | Check browser console (F12) for errors           |
+| Issue | Solution |
+|-------|----------|
+| `npm install` fails | Update Node.js to v16+ |
+| `shadow-cljs` not found | Run `npm install` again |
+| No JavaScript generated | Run `npm run build` instead of watch |
+| Page shows blank | Check browser console (F12) for errors |
 | GitHub Pages not updating | Wait 1-2 minutes and hard-refresh (Ctrl+Shift+R) |
 
 ## 📚 Learning Resources
@@ -406,6 +390,4 @@ Built with ❤️ as a demonstration of Lisp-family AI systems in the browser.
 **Made with 🧠 + 🎨 + 📝**
 
 Start chatting with LispMind and explore symbolic AI in your browser!
-#   l i s p m i n d - w e b 
- 
- 
+#
