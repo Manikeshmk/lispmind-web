@@ -3,7 +3,8 @@ node_modules/
 package-lock.json
 yarn.lock
 
-# Build outputs (but NOT the docs folder itself)
+# Build outputs - DO NOT TRACK COMPILED JS
+docs/js/
 /js/
 dist/
 .shadow-cljs/
