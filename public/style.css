@@ -1,23 +1,14 @@
-/* ============================================
-   LispMind Web — Dark Modern Chatbot Theme
-   ============================================ */
-
 :root {
-  --primary-color: #00d4ff;
-  --secondary-color: #6366f1;
-  --background-dark: #0f0f1e;
-  --background-card: #1a1a2e;
-  --background-light: #16213e;
-  --text-primary: #ffffff;
-  --text-secondary: #b0b0c0;
-  --border-color: #2a2a3e;
-  --ai-bubble: #16213e;
-  --user-bubble: #6366f1;
-  --ai-text: #ffffff;
-  --user-text: #ffffff;
-  --hover-color: #00a8cc;
-  --shadow: 0 8px 32px rgba(0, 212, 255, 0.1);
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --p: #00d4ff;
+  --s: #6366f1;
+  --bg: #0f0f1e;
+  --bg2: #1a1a2e;
+  --bg3: #16213e;
+  --fg: #fff;
+  --fg2: #b0b0c0;
+  --bd: #2a2a3e;
+  --sh: 0 8px 32px rgba(0, 212, 255, 0.1);
+  --tr: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ============================================

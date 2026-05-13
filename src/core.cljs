@@ -192,9 +192,225 @@
       :else nil)))
 
 ;; ============================================
-;; MAIN RESPONSE ENGINE
+;; CONVERSATION HISTORY & ANALYTICS
 ;; ============================================
-;; Rule-based chatbot logic with precedence
+;; Track conversation state and statistics
+
+(def conversation-state
+  "Store conversation history and metrics"
+  (atom {:messages [] :message-count 0 :start-time (js/Date.) :topics #{}}))
+
+(defn log-conversation
+  "Log a message to conversation history"
+  [role text]
+  (swap! conversation-state 
+         (fn [state]
+           (-> state
+               (update :messages conj {:role role :text text :time (js/Date.)})
+               (update :message-count inc)))))
+
+(defn get-conversation-stats
+  "Get statistics about the current conversation"
+  []
+  (let [state @conversation-state
+        msg-count (:message-count state)
+        duration (/ (- (.getTime (js/Date.)) 
+                      (.getTime (:start-time state))) 1000)]
+    {:total-messages msg-count
+     :duration-seconds duration
+     :avg-time-per-message (if (> msg-count 0) (/ duration msg-count) 0)
+     :topics (:topics state)}))
+
+(defn track-topic
+  "Track topics discussed in conversation"
+  [topic]
+  (swap! conversation-state update :topics conj topic))
+
+;; ============================================
+;; ADVANCED PATTERN MATCHING
+;; ============================================
+;; More sophisticated text analysis
+
+(defn has-question-word
+  "Check if text is a question"
+  [text]
+  (let [normalized (normalize text)]
+    (or (str/includes? normalized "what")
+        (str/includes? normalized "how")
+        (str/includes? normalized "why")
+        (str/includes? normalized "when")
+        (str/includes? normalized "where")
+        (str/includes? normalized "who")
+        (str/includes? normalized "?"))))
+
+(defn extract-entities
+  "Extract named entities from user input"
+  [text]
+  (let [normalized (normalize text)
+        entities {:person [] :location [] :action []}]
+    (cond-> entities
+      (re-find #"alice|bob|john|mary|dave" normalized)
+      (update :person conj (re-find #"alice|bob|john|mary|dave" normalized))
+      
+      (re-find #"london|paris|new york|tokyo|canada" normalized)
+      (update :location conj (re-find #"london|paris|new york|tokyo|canada" normalized))
+      
+      (re-find #"run|walk|eat|sleep|think" normalized)
+      (update :action conj (re-find #"run|walk|eat|sleep|think" normalized)))))
+
+(defn calculate-sentiment-score
+  "Calculate sentiment from text (-1 to 1)"
+  [text]
+  (let [normalized (normalize text)
+        positive-words ["good" "great" "awesome" "happy" "love" "excellent" "wonderful"]
+        negative-words ["bad" "terrible" "awful" "sad" "hate" "horrible" "awful"]
+        
+        pos-count (count (filter #(str/includes? normalized %) positive-words))
+        neg-count (count (filter #(str/includes? normalized %) negative-words))]
+    
+    (cond
+      (= 0 (+ pos-count neg-count)) 0
+      :else (/ (- pos-count neg-count) (+ pos-count neg-count)))))
+
+;; ============================================
+;; MULTI-TURN CONTEXT
+;; ============================================
+;; Handle conversation context
+
+(def conversation-context
+  "Store context across turns"
+  (atom {:last-topic nil
+         :last-emotion nil
+         :previous-message nil
+         :conversation-flow []}))
+
+(defn update-context
+  "Update conversation context after each message"
+  [topic emotion]
+  (swap! conversation-context
+         (fn [ctx]
+           (-> ctx
+               (assoc :last-topic topic
+                      :last-emotion emotion
+                      :previous-message (:current-message ctx))
+               (update :conversation-flow conj 
+                      {:topic topic :emotion emotion :timestamp (js/Date.)})))))
+
+(defn get-contextual-response
+  "Generate response considering conversation context"
+  [input topic emotion]
+  (let [ctx @conversation-context]
+    (if (= topic (:last-topic ctx))
+      "We're still discussing this topic. Tell me more!"
+      "Let's talk about this new topic.")))
+
+;; ============================================
+;; VALIDATION & ERROR HANDLING
+;; ============================================
+;; Ensure input validity
+
+(defn validate-input
+  "Validate user input"
+  [text]
+  {:valid? (and (string? text) (> (count (str/trim text)) 0))
+   :length (count text)
+   :word-count (count (str/split text #"\s+"))})
+
+(defn safe-respond
+  "Safely handle user input with validation"
+  [input]
+  (let [validation (validate-input input)]
+    (if (:valid? validation)
+      (respond input)
+      "Please enter valid text.")))
+
+;; ============================================
+;; RESPONSE RANKING & SCORING
+;; ============================================
+;; Score responses for quality
+
+(defn score-response-quality
+  "Score response quality based on various metrics"
+  [response]
+  (let [length (count response)
+        has-punctuation (str/includes? response ".")
+        has-numbers (re-find #"\d" response)
+        specificity (if (> length 50) 1 0.5)]
+    (+ (/ length 100)
+       (if has-punctuation 0.2 0)
+       (if has-numbers 0.1 0)
+       specificity)))
+
+;; ============================================
+;; KNOWLEDGE EXPANSION
+;; ============================================
+;; More knowledge entries
+
+(defn expand-knowledge
+  "Dynamically expand the knowledge base"
+  [topic description]
+  (swap! (fn [kb] (assoc kb (keyword topic) description))))
+
+(defn search-knowledge
+  "Search knowledge base for relevant information"
+  [query]
+  (let [q (normalize query)]
+    (some (fn [[key val]]
+            (when (str/includes? (str val) q)
+              val))
+          knowledge-base)))
+
+;; ============================================
+;; RESPONSE GENERATION HELPERS
+;; ============================================
+;; More sophisticated response building
+
+(defn build-response
+  "Build a response from components"
+  [& components]
+  (str/join " " (filter some? components)))
+
+(defn personalize-response
+  "Add personalization based on memory"
+  [base-response]
+  (if-let [name (recall :name)]
+    (str base-response " " name "!")
+    base-response))
+
+(defn format-recommendation
+  "Format recommendations nicely"
+  [recommendation]
+  (str "💡 " recommendation))
+
+;; ============================================
+;; CONVERSATION FLOW MANAGEMENT
+;; ============================================
+;; Better conversation handling
+
+(defn is-continuing-conversation
+  "Check if user is continuing a previous thought"
+  [text]
+  (let [normalized (normalize text)
+        continuations ["also" "and" "furthermore" "besides" "moreover" "however" "but"]]
+    (some #(str/starts-with? normalized %) continuations)))
+
+(defn is-affirmation
+  "Check if user is agreeing"
+  [text]
+  (let [normalized (normalize text)
+        affirmations ["yes" "yeah" "yep" "sure" "okay" "ok" "agreed" "right"]]
+    (some #(= normalized %) affirmations)))
+
+(defn is-negation
+  "Check if user is disagreeing"
+  [text]
+  (let [normalized (normalize text)
+        negations ["no" "nope" "not" "neither" "disagree" "wrong"]]
+    (some #(= normalized %) negations)))
+
+;; ============================================
+;; MAIN RESPONSE ENGINE - ENHANCED
+;; ============================================
 
 (defn respond
   "Main inference engine that generates AI responses.

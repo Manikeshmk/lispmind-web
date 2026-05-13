@@ -22,8 +22,15 @@ jobs:
       - run: npm install
       - run: npm run build
 
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4
+      - uses: actions/upload-artifact@v3
+        if: always()
         with:
-          branch: gh-pages
-          folder: docs
+          name: build-logs
+          path: docs/
+
+      - name: Deploy to gh-pages
+        if: success()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
