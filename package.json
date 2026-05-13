@@ -5,19 +5,14 @@
   "author": "Manikesh",
   "license": "MIT",
   "scripts": {
-    "install": "npm install",
     "watch": "shadow-cljs watch app",
     "build": "shadow-cljs release app",
     "repl": "shadow-cljs browser-repl app",
     "clean": "rm -rf public/js && shadow-cljs clean app"
   },
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "shadow-cljs": "^2.25.0",
-    "clojure": "^1.11.0"
+    "shadow-cljs": "^2.25.0"
   },
   "engines": {
     "node": ">=16.0.0"
