@@ -8,9 +8,9 @@
   {:target :browser
    :output-dir "public/js"
    :asset-path "/js"
-   :modules {:main {:entries [lispmind.core]}}
+   :modules {:main {:entries [core]}}
    :compiler-options {:optimizations :simple}
-   :devtools {:after-load lispmind.core/init
+   :devtools {:after-load core/init
               :preloads []
               :http-root "public"
               :http-port 8080}}}}

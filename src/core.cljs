@@ -1,4 +1,4 @@
-(ns lispmind.core
+(ns core
   "LispMind Web — A Rule-Based AI Assistant powered by ClojureScript.
    This module implements symbolic AI concepts including:
    - Rule-based reasoning
