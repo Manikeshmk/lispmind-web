@@ -36,6 +36,7 @@ what is lisp             → Lisp explanation
 ## 🚀 Quick Start
 
 ```bash
+git clone https://github.com/Manikeshmk/lispmind-web.git
 # Install
 npm install
 
