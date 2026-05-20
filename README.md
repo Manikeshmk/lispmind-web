@@ -1,3 +1,7 @@
+![Repo visits](https://hits.sh/github.com/Manikeshmk/lispmind-web.svg?label=repo%20visits)
+![GitHub stars](https://img.shields.io/github/stars/Manikeshmk/lispmind-web?style=logo&logo=github&label=⭐%20Stars) 
+![GitHub forks](https://img.shields.io/github/forks/Manikeshmk/lispmind-web?style=social)
+
 # 🧠 LispMind Web
 
 AI Chatbot in your browser. Built with **ClojureScript (Lisp)**.
